@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Thin.ttf');
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-ExtraLight.ttf');
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Light.ttf');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Regular.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Medium.ttf');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-SemiBold.ttf');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Bold.ttf');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-ExtraBold.ttf');
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Black.ttf');
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+.ant-select-selection-item,
+.ant-select-item-option-content {
+    @apply !text-xs;
+}
+
+.ant-select-item-option-content {
+    @apply !flex !flex-col !justify-center;
+}
+
+.ant-select-item-option-selected .ant-select-item-option-content {
+    @apply !text-white;
+}
+
+.tr {
+  @apply w-1/6 border-l border-color-ash pl-5;
+}
+.application_dets-text-main {
+  @apply capitalize text-sm text-[rgb(133,146,163)];
+}
+
+.application_dets-text-sub {
+  @apply font-semibold text-sm capitalize text-[rgba(50,71,92,0.87)];
+}
+
+.switch {
+  @apply mt-4 bg-color-ash;
+}
+
+.application_dets-nav-icon {
+  @apply cursor-pointer text-xl mr-0 sm:mr-2 text-[rgba(50,71,92,0.6)];
+}
+.application_dets-nav-icon--active {
+  @apply cursor-pointer text-xl mr-0 sm:mr-2 text-[rgb(2,203,246)];
+}
+
+.application_dets-nav-button {
+  @apply flex items-center ml-4 p-4 text-sm  cursor-pointer border-none bg-transparent uppercase text-[rgba(50,71,92,0.6)];
+}
+.application_dets-nav-button--active {
+  @apply text-[rgb(2,203,246)]  flex items-center ml-4 p-4 text-sm  cursor-pointer border-b-2 border-[rgb(2,203,246)] bg-[rgba(2,203,246,0.1)] uppercase;
+}
+.navbtn-p {
+  @apply hidden sm:block;
+}
+
+.ant-switch:not(.ant-switch-checked) {
+    @apply !bg-[#d9d9d9];
+}
+
+.ant-switch.ant-switch-checked {
+    @apply !bg-[#51bae7];
+}
+
+.adduni .ant-select-selection-item {
+  @apply !text-[rgb(133,146,163)] capitalize text-base;
+}
+
+.adduniup .ant-btn {
+  @apply !text-[rgb(133,146,163)];
+}
+
+.university_dets-btn--active {
+  @apply !text-[rgb(2,203,246)]  border-b-2 border-[rgb(2,203,246)] bg-[rgba(2,203,246,0.1)];
+}
+
+.student_dets-btn--active {
+  @apply text-white  bg-secondary;
+}
+
+.create_user_dialogue--active {
+  @apply border-4 border-[rgb(2,203,246)];
+}
+
+.create_user_dialogue--inactive {
+  @apply border-2 border-[rgba(2,203,246,0.3)];
+}
+.ant-select-selection-placeholder {
+  @apply !text-[rgb(133,146,163)] text-base capitalize;
+}
+/* admin-applications */
+.admin_app_nav {
+  @apply py-2 px-4 uppercase border-b border-transparent text-[rgb(133,146,163)] text-sm;
+}
+.admin_app_nav--active {
+  @apply py-2 px-4 text-cyan-500 uppercase border-b-2 border-cyan-500 text-sm;
+}
+
+.superadminbtn--active {
+  @apply border-r-2 border-cyan-500;
+}
+.superadmindiv--active {
+  @apply text-white bg-cyan-500;
+}
+
+/* phone-inpiut */
+.form-control {
+  @apply !w-full !border !bg-[#F0FBFF];
+}
+
+.country-list {
+  /* @apply h-[7rem]; */
+}
+.form-control {
+  @apply !border-none !bg-[#F0FBFF] !rounded-lg md:!rounded-[1.25vh];
+}
+
+.flag-dropdown {
+  @apply !border-none !bg-[#F0FBFF] !rounded-lg md:!rounded-[1.25vh];
+}
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
+.permission__check .ant-checkbox-inner {
+  @apply !border-secondary !border;
+}
+
+.react_select__control {
+  @apply !w-full !min-h-fit !h-8 !pl-2 md:!pl-[1vh] !text-xs !items-start !border-none;
+  @apply !bg-secondary3 !bg-opacity-20 !rounded-lg md:!rounded-[1.25vh];
+}
+
+.react_select__value-container {
+  @apply !py-0 !h-full ;
+}
+
+.react_select__menu {
+  @apply !text-xs md:!leading-[2vh];
+}
+
+.select-menu-small .react_select__menu-list {
+    @apply md:!max-h-40;
+}
+
+.top-menu .react_select__menu {
+  @apply !top-auto !bottom-full;
+}
+
+.lg-top-menu .react_select__menu {
+    @apply lg:!top-auto lg:!bottom-full;
+}
+
+.react_select__indicators {
+  @apply !h-full;
+}
+
+.react_select__indicator-separator {
+  @apply !h-[50%] !my-auto;
+}
+
+.react_select_disabled .react_select__indicators {
+  @apply !hidden;
+}
+
+.react_select__indicator svg {
+  @apply !w-5 !h-5 md:!w-[2.5vh] md:!h-[2.5vh];
+}
+
+.react-tel-input .flag-dropdown .selected-flag {
+  @apply hover:!bg-secondary3;
+}
+
+.react-tel-input .flag-dropdown .selected-flag .flag .arrow {
+  @apply !left-2 md:!left-[1vh]
+}
+
+*::-webkit-scrollbar {
+  @apply w-1 bg-primary3 bg-opacity-25;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-secondary rounded-full;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+
+.date-picker-no-icon {
+    @apply !relative !cursor-pointer !box-border !leading-normal;
+}
+
+.date-picker-no-icon::-webkit-calendar-picker-indicator {
+    @apply !absolute !right-0 !w-full !h-full !m-0 !p-0 !opacity-0 !cursor-pointer;
+}
+
+.bg-grid {
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #C7F2FF 1px, transparent 1px), linear-gradient(to right, #C7F2FF 1px, #ffffff 1px);
+    background-size: 68px 68px;
+    background-position: -2px -2px, -2px -2px;
+}
