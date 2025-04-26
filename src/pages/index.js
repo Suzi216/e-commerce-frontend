@@ -1,5 +1,6 @@
 // import { useRouter } from 'next/router'
 // import { useSelector } from 'react-redux'
+
 import {  SUPER_ADMIN, USER} from '../constants/index.js'
 import DynamicLoader from '../components/hoc/DynamicLoader.js'
 import dynamic from 'next/dynamic'
@@ -23,6 +24,6 @@ export default function Home() {
     }
     
 
-    return <h1>Hello</h1>;
+    return <h1 className='text-blue-500'>Hello</h1>;
   }
   
