@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment,useEffect } from 'react'
 import Input from '../components/core/Input'
 import MultiSelectInput from '../components/core/MultiSelectInput'
 import ProductService from '@/untils/services/ProductService'
@@ -52,6 +52,7 @@ const products = [
   },
   // More products...
 ]
+
 const navigation = {
 
   pages: [
@@ -77,8 +78,10 @@ export default function AdminHome() {
   const [characteristics, setCharacteristics] = useState('')
   const [img, setImages] = useState('')
 
+  const [products, setProducts] = useState([])
+  const [totalPages, setTotalPages] = useState(0)
 
-  const handleSubmit = async (event) => {
+  const createProduct = async (event) => {
     event.preventDefault()
     const payload = {
       name,
@@ -104,9 +107,25 @@ export default function AdminHome() {
     });
     const res = await ProductService.createProduct(data)
     console.log(res)
-
   }
 
+  useEffect(() => {
+    
+    ProductService.getAllProducts().then((response) => {
+      console.log(response.data);
+      const { content, totalPages } = response.data
+      setProducts(content)
+      setTotalPages(totalPages)
+      // setUniversityOptions(
+      //   response.data.map(({ id, name, country }) => {
+      //     return { label: name, value: id, country }
+      //   })
+      // )
+    })
+  }, [])
+
+
+  
   return (
     <>
       ADMINPAGE
@@ -175,7 +194,7 @@ export default function AdminHome() {
             {products.map((product) => (
               <div key={product.id} className="group relative">
                 <img
-                  alt={product.imageAlt}
+                  alt={product.img}
                   src={product.imageSrc}
                   className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
                 />
@@ -187,9 +206,14 @@ export default function AdminHome() {
                         {product.name}
                       </a>
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                    <p className="mt-1 text-sm text-gray-500">{product.description}</p>
+                    <p className="mt-1 text-sm text-gray-500">{product.characteristics}</p>
+                    <p className="mt-1 text-sm text-gray-500">{product.variability}</p>
+                    
+
                   </div>
-                  <p className="text-sm font-medium text-gray-900">{product.price}</p>
+                  <p className="text-sm font-medium text-gray-900">{product.unitPrice}</p>
+                  <p className="text-sm font-medium text-gray-900">{product.categories}</p>
                 </div>
               </div>
             ))}
@@ -278,7 +302,7 @@ export default function AdminHome() {
             <button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded shadow"
-              onClick={handleSubmit}
+              onClick={createProduct}
             >
               Create Product
             </button>
