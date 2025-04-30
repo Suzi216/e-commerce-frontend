@@ -1,26 +1,9 @@
 import { useState, Fragment } from 'react'
-import { StarIcon } from '@heroicons/react/20/solid'
-import { Description, Radio, RadioGroup } from '@headlessui/react'
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-  Tab,
-  TabGroup,
-  TabList,
-  TabPanel,
-  TabPanels,
-} from '@headlessui/react'
-
 import Input from '../components/core/Input'
-import SelectInput from '../components/core/SelectInput'
-
+import MultiSelectInput from '../components/core/MultiSelectInput'
+import ProductService from '@/untils/services/ProductService'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
+import { categoryOptions } from '../constants/filter'
 const products = [
   {
     id: 1,
@@ -79,16 +62,20 @@ const navigation = {
     { name: 'Shoes', href: 'shoes' },
   ],
 }
+
+const formatOptionLabel = ({ label }) => (label)
+
 export default function AdminHome() {
   const [addProduct, setAddProduct] = useState(false)
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [category, setCategory] = useState('')
+  const [categories, setCategory] = useState([])
+  const [size, setSize] = useState('')
   const [unitPrice, setUnitPrice] = useState('')
   const [variability, setVariability] = useState('')
   const [characteristics, setCharacteristics] = useState('')
-  const [images, setImages] = useState('')
+  const [img, setImages] = useState('')
 
 
   const handleSubmit = async (event) => {
@@ -96,12 +83,27 @@ export default function AdminHome() {
     const payload = {
       name,
       description,
-      category,
+      categories,
       unitPrice,
       variability,
       characteristics,
-      images
+      img,
+      size
     }
+    console.log(payload)
+    let data = new FormData()
+
+    Object.keys(payload).forEach((key) => {
+      if (key === 'categories') {
+        const categoryValues = payload[key].map(item => item.value); // or item.label
+        data.append(key, categoryValues); // gives ["SHOES", "ACCESSORIES"]
+        console.log(categoryValues)
+      } else {
+        data.append(key, payload[key]);
+      }
+    });
+    const res = await ProductService.createProduct(data)
+    console.log(res)
 
   }
 
@@ -233,16 +235,27 @@ export default function AdminHome() {
               onChange={setCharacteristics}
               backgroundColor=" bg-opacity-20"
             />
-
-            <SelectInput
-              label={'Category' + '*'}
-              placeholder={'Select Category'}
-              backgroundColor="bg-secondary3 bg-opacity-20"
-              onSelect={setCategory}
-              selected={category}
-            // options={categoryOptions}
-            // formatOptionLabel={formatOptionLabel}
+            <Input
+              label={'Size' + '*'}
+              placeholder={'Size'}
+              value={size}
+              onChange={setSize}
+              backgroundColor=" bg-opacity-20"
             />
+
+            <MultiSelectInput
+              backgroundColor="#F0FBFF"
+              id="language"
+              placeholder={'Category'}
+              selected={categories}
+              onSelect={(value) => {
+                setCategory(value)
+              }}
+              options={categoryOptions}
+              className="flex-1 mb-3"
+              formatOptionLabel={formatOptionLabel}
+            />
+
 
             <Input
               label={'Variability' + '*'}
@@ -255,7 +268,7 @@ export default function AdminHome() {
             <Input
               label={'Images' + '*'}
               placeholder={'Images'}
-              value={images}
+              value={img}
               onChange={setImages}
               backgroundColor=" bg-opacity-20"
             />
